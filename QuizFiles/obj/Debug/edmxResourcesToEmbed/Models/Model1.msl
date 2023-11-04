@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities1">
+    <EntitySetMapping Name="ADMINS">
+      <EntityTypeMapping TypeName="masterModel.ADMIN">
+        <MappingFragment StoreEntitySet="ADMINS">
+          <ScalarProperty Name="AD_ID" ColumnName="AD_ID" />
+          <ScalarProperty Name="AD_NAME" ColumnName="AD_NAME" />
+          <ScalarProperty Name="AD_PASSWORD" ColumnName="AD_PASSWORD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QUESTIONs">
+      <EntityTypeMapping TypeName="masterModel.QUESTION">
+        <MappingFragment StoreEntitySet="QUESTION">
+          <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+          <ScalarProperty Name="Q_TEXT" ColumnName="Q_TEXT" />
+          <ScalarProperty Name="OPA" ColumnName="OPA" />
+          <ScalarProperty Name="OPB" ColumnName="OPB" />
+          <ScalarProperty Name="OPC" ColumnName="OPC" />
+          <ScalarProperty Name="OPD" ColumnName="OPD" />
+          <ScalarProperty Name="COP" ColumnName="COP" />
+          <ScalarProperty Name="q_fk_catid" ColumnName="q_fk_catid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SETEXAMs">
+      <EntityTypeMapping TypeName="masterModel.SETEXAM">
+        <MappingFragment StoreEntitySet="SETEXAM">
+          <ScalarProperty Name="EXAM_ID" ColumnName="EXAM_ID" />
+          <ScalarProperty Name="EXAM_DATE" ColumnName="EXAM_DATE" />
+          <ScalarProperty Name="EXAM_FK_STU" ColumnName="EXAM_FK_STU" />
+          <ScalarProperty Name="EXAM_NAME" ColumnName="EXAM_NAME" />
+          <ScalarProperty Name="STD_STD_SCORE" ColumnName="STD_STD_SCORE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENTs">
+      <EntityTypeMapping TypeName="masterModel.STUDENT">
+        <MappingFragment StoreEntitySet="STUDENT">
+          <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+          <ScalarProperty Name="S_NAME" ColumnName="S_NAME" />
+          <ScalarProperty Name="S_PASSWORD" ColumnName="S_PASSWORD" />
+          <ScalarProperty Name="S_IMAGE" ColumnName="S_IMAGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_category">
+      <EntityTypeMapping TypeName="masterModel.tbl_category">
+        <MappingFragment StoreEntitySet="tbl_category">
+          <ScalarProperty Name="cat_encryptedstring" ColumnName="cat_encryptedstring" />
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+          <ScalarProperty Name="cat_name" ColumnName="cat_name" />
+          <ScalarProperty Name="cat_fk_adid" ColumnName="cat_fk_adid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ADMINS">
+    <Key>
+      <PropertyRef Name="AD_ID" />
+    </Key>
+    <Property Name="AD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AD_NAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="AD_PASSWORD" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QUESTION">
+    <Key>
+      <PropertyRef Name="QUESTION_ID" />
+    </Key>
+    <Property Name="QUESTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Q_TEXT" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OPA" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="OPB" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="OPC" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="OPD" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="COP" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="q_fk_catid" Type="int" />
+  </EntityType>
+  <EntityType Name="SETEXAM">
+    <Key>
+      <PropertyRef Name="EXAM_ID" />
+    </Key>
+    <Property Name="EXAM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EXAM_DATE" Type="datetime" />
+    <Property Name="EXAM_FK_STU" Type="int" />
+    <Property Name="EXAM_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="STD_STD_SCORE" Type="int" />
+  </EntityType>
+  <EntityType Name="STUDENT">
+    <Key>
+      <PropertyRef Name="S_ID" />
+    </Key>
+    <Property Name="S_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="S_NAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="S_PASSWORD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="S_IMAGE" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_category">
+    <Key>
+      <PropertyRef Name="cat_id" />
+    </Key>
+    <Property Name="cat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cat_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="cat_fk_adid" Type="int" />
+    <Property Name="cat_encryptedstring" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK__QUESTION__q_fk_c__405A880E">
+    <End Role="tbl_category" Type="Self.tbl_category" Multiplicity="0..1" />
+    <End Role="QUESTION" Type="Self.QUESTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_category">
+        <PropertyRef Name="cat_id" />
+      </Principal>
+      <Dependent Role="QUESTION">
+        <PropertyRef Name="q_fk_catid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SETEXAM__EXAM_FK__414EAC47">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="SETEXAM" Type="Self.SETEXAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="S_ID" />
+      </Principal>
+      <Dependent Role="SETEXAM">
+        <PropertyRef Name="EXAM_FK_STU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_categ__cat_f__4242D080">
+    <End Role="ADMINS" Type="Self.ADMINS" Multiplicity="0..1" />
+    <End Role="tbl_category" Type="Self.tbl_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ADMINS">
+        <PropertyRef Name="AD_ID" />
+      </Principal>
+      <Dependent Role="tbl_category">
+        <PropertyRef Name="cat_fk_adid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="masterModelStoreContainer">
+    <EntitySet Name="ADMINS" EntityType="Self.ADMINS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QUESTION" EntityType="Self.QUESTION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SETEXAM" EntityType="Self.SETEXAM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT" EntityType="Self.STUDENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_category" EntityType="Self.tbl_category" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__QUESTION__q_fk_c__405A880E" Association="Self.FK__QUESTION__q_fk_c__405A880E">
+      <End Role="tbl_category" EntitySet="tbl_category" />
+      <End Role="QUESTION" EntitySet="QUESTION" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SETEXAM__EXAM_FK__414EAC47" Association="Self.FK__SETEXAM__EXAM_FK__414EAC47">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="SETEXAM" EntitySet="SETEXAM" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_categ__cat_f__4242D080" Association="Self.FK__tbl_categ__cat_f__4242D080">
+      <End Role="ADMINS" EntitySet="ADMINS" />
+      <End Role="tbl_category" EntitySet="tbl_category" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
